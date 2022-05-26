@@ -36,7 +36,8 @@ public class TanksGame implements ApplicationListener {
 	public static Model tankModel;
 
 	public static int tankStartHealth = 1;
-	public static double tanksPerSecond = 0.4;
+	public static double tanksPerSecond = 0.3;
+	public static double tanksSpeed = 0.015;
 
 	@Override
 	public void create () {
@@ -121,10 +122,15 @@ public static int frameOn;
 		}
 
 		int[] coords = board.closestSquare(tmpVector.x,tmpVector.y,tmpVector.z);
+		if(Gdx.input.isKeyPressed(Input.Keys.SPACE) && board.getSquare(coords[0],coords[1]).associatedObject==null)
+			createSalamander(coords[0],coords[1]);
 
-		if(frameOn%(60/tanksPerSecond)==0)
+
+		if(frameOn%(int)(60/tanksPerSecond)==0) {
 			addTank();
-
+		}
+tanksPerSecond+=0.00001;
+		tanksSpeed+=0.000001;
 frameOn++;
 	while(objectsToRemove.size()>0){
 		board.removeGameObject(objectsToRemove.remove(0));
@@ -134,7 +140,7 @@ frameOn++;
 
 	private void addTank(){
 		if(loading) return;
-		GameObject tank1 = new Tank(tankModel, -8,-2, board.level1TurningPoints(), 90);
+		GameObject tank1 = new Tank(tankModel, -8,-2, board.level1TurningPoints(), 90,tanksSpeed);
 		board.addGameObject(tank1);
 	}
 
@@ -143,6 +149,12 @@ frameOn++;
 		GameObject projectile = new Projectile(bananan, x,z,direction,0.07);
 		board.addGameObject(projectile);
 	}
+
+	private void createSalamander(int x, int z){
+		GameObject salamanderObject = new Tower(salamander,x-5,z-5,0);
+		board.addGameObject(salamanderObject,x,z);
+	}
+
 
 	@Override
 	public void dispose () {

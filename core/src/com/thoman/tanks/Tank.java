@@ -10,13 +10,14 @@ public class Tank extends GameObject{
     private double direction;
     private double displayDirection;
     private ArrayList<TurningPoint> turningPoints;
-    public Tank(Model model, int x, int z, ArrayList<TurningPoint> turningPoints, double direction){
+    public Tank(Model model, int x, int z, ArrayList<TurningPoint> turningPoints, double direction,double speed){
         super(model,x, 0.49f, z , 0.03f);
         //this.turningPoints = turningPoints;
         this.turningPoints = new ArrayList<TurningPoint>();
         for(TurningPoint i : turningPoints)
             this.turningPoints.add(i);
         this.direction = direction;
+        this.speed = speed;
 
         update();
     }

@@ -12,8 +12,8 @@ public class Tower extends GameObject{
     private static float scale = 0.005f;
     private static float y = 0.55f;
     private int framesTillShot;
-    private int shotDelay = 150;
-    private double projectileSpeed = 3;
+    private int shotDelay = 350;
+    private double projectileSpeed = 3.5;
     private ArrayList<TurningPoint> turningPoints;
     public Tower(Model model, int x, int z, double direction){
         super(model,x, y, z , scale);
