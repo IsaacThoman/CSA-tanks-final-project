@@ -36,7 +36,7 @@ public class TanksGame implements ApplicationListener {
 	public static Model tankModel;
 
 	public static int tankStartHealth = 1;
-	public static double tanksPerSecond = 0.5;
+	public static double tanksPerSecond = 0.4;
 
 	@Override
 	public void create () {
